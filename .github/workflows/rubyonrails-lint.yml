@@ -26,6 +26,7 @@ jobs:
         run: |
           bundle
           gem install rubocop
+          gem install rubocop-require_tools
         # bin/bundler-audit --update
         # bin/brakeman -q -w2
       # Add or Replace any other Linters here
