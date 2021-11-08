@@ -24,9 +24,7 @@ jobs:
       # Add or Replace any other security checks here
       - name: Run security checks
         run: |
-          bundle
-          rubocop
-          
+          bundle          
         # bin/bundler-audit --update
         # bin/brakeman -q -w2
       # Add or Replace any other Linters here
