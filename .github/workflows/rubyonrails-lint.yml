@@ -26,10 +26,14 @@ jobs:
         run: |
           bundle
           gem install rubocop
-          gem install rubocop-require_tools
+          gem install rubocop-rails
+        # gem install rubocop-require_tools
+        # gem install rubocop-performance
+        #  gem install rubocop-rails
+        #  gem install rubocop-rspec
         # bin/bundler-audit --update
         # bin/brakeman -q -w2
       # Add or Replace any other Linters here
-      - name: Run linters
+      - name: Run rubocop linter
         run: |
           rubocop --parallel
