@@ -27,10 +27,13 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'haml-rails', '~> 2.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'pry', '~> 0.13.1'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-performance'
