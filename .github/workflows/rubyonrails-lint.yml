@@ -35,4 +35,5 @@ jobs:
 
       - name: Run rspec tests
         run: |
-          rspec spec/
+           bundle exec rspec
+
