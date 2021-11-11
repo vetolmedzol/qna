@@ -1,0 +1,11 @@
+%h1
+  = question.title
+%h2
+  = question.body
+
+- if question.answers.any?
+  %h3 Answers
+  - question.answers.each do |answer|
+    = render 'answers/answer', answer: answer, question: question
+-else
+  %h4 Question have no any answers yet!

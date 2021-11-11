@@ -48,3 +48,6 @@ RSpec/VerifiedDoubles:
 
 RSpec/VoidExpect:
   Enabled: false
+
+RSpec/Capybara/FeatureMethods:
+  Enabled: false
