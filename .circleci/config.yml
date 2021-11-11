@@ -61,7 +61,8 @@ jobs:
       - run:
           name: RSpec
           command: |
-            bundle exec rspec --profile 10 \
+            bundle exec rspec spec/models/ spec/controllers/
+                              --profile 10 \
                               --format progress
       - save_cache:
           key: qna-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
