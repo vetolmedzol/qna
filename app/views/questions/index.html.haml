@@ -1,0 +1,8 @@
+%h1 Index page!
+= link_to 'Ask question', new_question_path
+- if @questions.present?
+  %h1 Questions
+  - @questions.each do |question|
+    = render 'question', question: question
+-else
+  %h4 Question have no any answers yet!
