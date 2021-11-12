@@ -62,8 +62,7 @@ jobs:
           name: RSpec
           command: |
             bundle exec rspec spec/models/ spec/controllers/
-                              --profile 10 \
-                              --format progress
+                            --format progress
       - save_cache:
           key: qna-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
