@@ -1,6 +1,7 @@
-%h1
-  = question.title
-%h2
+%h3
+  .index-question-title
+    = link_to question.title, question_path(question)
+%p
   = question.body
 
 - if question.answers.any?

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Create uqestions', '
+feature 'Create qestions', '
     In order to get answer fromm community
     As an authenticated user
     I want to be able toask question
