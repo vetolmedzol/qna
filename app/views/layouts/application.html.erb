@@ -12,19 +12,24 @@
   </head>
 
   <body>
-  <h1 class="text-center">
-    <%= link_to "Home", root_path %>
-    <% if current_user.present? %>
-      <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "header-button" %>
-    <% else %>
-      <%= link_to "Sign in", new_user_session_path %>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-  </h1>
+  <div class="ml-150 btn-group text-center">
+    |
+      <%= link_to "Home", root_path, class: "header-button" %>
+    |
+      <% if current_user.present? %>
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "header-button" %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, class: "header-button" %>
+      <% end %>
+    |
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+  </div>
     <%= yield %>
-  <h1 class="text-center">
-    Footer
-  </h1>
+  <div class="ml-150 btn-group text-center">
+    |
+    <%= link_to "Footer", 'https://github.com/vetolmedzol/qna', class: "header-button" %>
+    |
+  </div>
   </body>
 </html>
