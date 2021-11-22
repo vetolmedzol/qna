@@ -60,8 +60,7 @@ jobs:
           command: bundle exec rails db:create db:schema:load --trace
       - run:
           name: RSpec
-          command: |
-            bundle exec spring rspec spec/models/ spec/controllers/
+          command: bundle exec spring rspec --tag ~type:feature
       - save_cache:
           key: qna-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
