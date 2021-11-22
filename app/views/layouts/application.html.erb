@@ -2,27 +2,34 @@
 <html>
   <head>
     <title>Qna</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <h1 style="text-align: center">
-    <!--    I will remove inline styles after adding css))-->
-    <!--    I promise!-->
-    Header
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-  </h1>
+  <div class="ml-150 btn-group text-center">
+    |
+      <%= link_to "Home", root_path, class: "header-button" %>
+    |
+      <% if current_user.present? %>
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "header-button" %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, class: "header-button" %>
+      <% end %>
+    |
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+  </div>
     <%= yield %>
-  <h1 style="text-align: center">
-    <!--    I will remove inline styles after adding css))-->
-    <!--    I promise!-->
-    Footer
-  </h1>
+  <div class="ml-150 btn-group text-center">
+    |
+    <%= link_to "Footer", 'https://github.com/vetolmedzol/qna', class: "header-button" %>
+    |
+  </div>
   </body>
 </html>

@@ -1,11 +1,13 @@
-%h1
-  = question.title
 %h2
+  .index-question-title
+    = link_to question.title, question_path(question)
+%h3
   = question.body
 
 - if question.answers.any?
-  %h3 Answers
   - question.answers.each do |answer|
-    = render 'answers/answer', answer: answer, question: question
+    .answers
+      = render 'answers/answer', answer: answer, question: question
 -else
-  %h4 Question have no any answers yet!
+  %p Question have no any answers yet!
+  %p ***

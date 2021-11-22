@@ -1,3 +1,25 @@
 // Place all the styles related to the Questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.index-question-title {
+  a {
+    color: black;
+    text-decoration: none;
+    cursor: cell;
+  }
+}
+.header-button {
+  color: black;
+  text-decoration: none;
+  border: none;
+  background-color: white;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
+
+.ml-150 {
+  margin-left: 150px;
+}
