@@ -96,6 +96,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.4)
     formatador (0.3.0)
     fuubar (2.5.1)
@@ -124,6 +126,10 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    guard-spring (1.1.1)
+      guard (~> 2.0)
+      guard-compat (~> 1.1)
+      spring
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
@@ -352,10 +358,12 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   factory_bot_rails
+  faker (~> 2.19)
   fuubar (~> 2.0)
   guard-bundler (~> 2.2, >= 2.2.1)
   guard-rails (~> 0.7.2)
   guard-rspec (~> 4.7, >= 4.7.3)
+  guard-spring (~> 1.1, >= 1.1.1)
   haml-rails (~> 2.0)
   jbuilder (~> 2.7)
   kaminari

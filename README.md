@@ -6,8 +6,15 @@
 
 * RAILS version 6.1.4
 
+* PostgresQL version 12
+
 ##Database
 rake db:create db:migrate
 
 ## How to run the test suite
-rspec spec/
+spring rspec spec/
+
+## How to run the guard
+guard
+### How to run the rails server with guard
+guard -g server

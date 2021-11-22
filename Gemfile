@@ -27,6 +27,7 @@ gem 'haml-rails', '~> 2.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'faker', '~> 2.19'
   gem 'pry', '~> 0.13.1'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
@@ -41,6 +42,7 @@ group :development do
   gem 'guard-bundler', '~> 2.2', '>= 2.2.1', require: false
   gem 'guard-rails', '~> 0.7.2', require: false
   gem 'guard-rspec', '~> 4.7', '>= 4.7.3', require: false
+  gem 'guard-spring', '~> 1.1', '>= 1.1.1', require: false
   gem 'spring-commands-rspec', require: false
 
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
