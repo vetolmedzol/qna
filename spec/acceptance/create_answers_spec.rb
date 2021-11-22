@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 feature 'User answer', '
 In order to exchange my knowledge
 As an authenticated  User

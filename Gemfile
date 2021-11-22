@@ -38,6 +38,10 @@ group :development, :test do
 end
 
 group :development do
+  gem 'guard-bundler', '~> 2.2', '>= 2.2.1', require: false
+  gem 'guard-rails', '~> 0.7.2', require: false
+  gem 'guard-rspec', '~> 4.7', '>= 4.7.3', require: false
+
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
@@ -51,6 +55,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
+  gem 'fuubar', '~> 2.0'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'launchy', '~> 2.4', '>= 2.4.3'

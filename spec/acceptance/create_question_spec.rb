@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 feature 'Create qestions', '
     In order to get answer fromm community
     As an authenticated user
