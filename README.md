@@ -1,6 +1,7 @@
-# README
+# QNA
+[![Build Status](https://app.travis-ci.com/vetolmedzol/qna.svg?branch=master)](https://app.travis-ci.com/vetolmedzol/qna)
 
-###Things you may want to cover:
+<p>Things you may want to cover:</p>
 
 * Ruby version 3.0.0
 
@@ -8,13 +9,13 @@
 
 * PostgresQL version 12
 
-##Database
+### Database
 rake db:create db:migrate
 
-## How to run the test suite
+### How to run the test suite
 spring rspec spec/
 
-## How to run the guard
+### How to run the guard
 guard
-### How to run the rails server with guard
+<p><strong>How to run the rails server with guard</strong></p>
 guard -g server
