@@ -1,4 +1,5 @@
 RSpec.describe(AnswersController) do
+  sign_in_user
   let(:question) { create(:question) }
   let(:answer) { create(:answer, question: question) }
 

@@ -28,6 +28,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'faker', '~> 2.19'
+  gem 'parallel_tests', '~> 2.7'
   gem 'pry', '~> 0.13.1'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
@@ -36,6 +37,7 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'spring-commands-parallel-tests', '~> 1.0', '>= 1.0.1'
 end
 
 group :development do
