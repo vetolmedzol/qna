@@ -14,6 +14,8 @@ rake db:create db:migrate
 
 ### How to run the test suite
 spring rspec spec/
+<p><strong>How to run the parallel tests</strong></p>
+rake parallel:spec
 
 ### How to run the guard
 guard

@@ -12,4 +12,4 @@ development:
 
 test:
   <<: *default
-  database: qna_test
+  database: qna_test<%= ENV['TEST_ENV_NUMBER'] || ''%>
