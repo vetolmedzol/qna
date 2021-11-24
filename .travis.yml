@@ -32,7 +32,7 @@ before_script:
   - sleep 3
 
 script:
-  - bundle exec rspec --tag ~type:feature
+  - bundle exec parallel_rspec spec/controllers/ spec/models/
 
 gemfile:
   - Gemfile
