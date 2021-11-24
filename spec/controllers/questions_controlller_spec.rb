@@ -1,5 +1,5 @@
 RSpec.describe(QuestionsController) do
-  let(:question) { create(:question) }
+  let(:question) { create(:question, user: @user) }
 
   describe 'GET #index' do
     let(:questions) { create_list(:question, 2) }
@@ -16,6 +16,8 @@ RSpec.describe(QuestionsController) do
   end
 
   describe 'GET #show' do
+    let!(:question) { create(:question, user: create(:user)) }
+
     before { get :show, params: { id: question } }
 
     it 'assigns the requested question to @question' do
@@ -59,7 +61,7 @@ RSpec.describe(QuestionsController) do
     sign_in_user
 
     context 'with valid attributes' do
-      it 'seves the new question in database' do
+      it 'saves the new question in database' do
         expect { post(:create, params: { question: attributes_for(:question) }) }.to(change(Question, :count).by(1))
       end
 

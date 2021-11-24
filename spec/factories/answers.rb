@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :answer do
-    question { create(:question) }
+    question
     title { 'MyString' }
+    user
   end
 
   factory :invalid_answer, class: 'Answer' do

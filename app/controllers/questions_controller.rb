@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
   def edit; end
 
   def create
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
     if @question.save
       flash[:notice] = 'Your question successfully created!'
       redirect_to(@question)
@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy!
+    @question.destroy! if current_user.author_of?(@question)
     redirect_to(questions_path)
   end
 

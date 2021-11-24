@@ -2,6 +2,7 @@ RSpec.describe(AnswersController) do
   sign_in_user
   let(:question) { create(:question) }
   let(:answer) { create(:answer, question: question) }
+  let(:my_answer) { create(:answer, question: question, user: @user) }
 
   describe 'GET #show' do
     before { get :show, params: { question_id: question, id: answer } }
@@ -31,7 +32,7 @@ RSpec.describe(AnswersController) do
     context 'with valid attributes' do
       let(:create_request) { post :create, params: { question_id: question, answer: attributes_for(:answer) } }
 
-      it 'saves the new question in the database' do
+      it 'saves the new answer in the database' do
         expect { create_request }.to(change(question.answers, :count).by(1))
       end
 
@@ -59,15 +60,20 @@ RSpec.describe(AnswersController) do
     before do
       question
       answer
+      my_answer
     end
 
-    it 'delete answer' do
-      expect { delete(:destroy, params: { question_id: question, id: answer }) }.to(change(Answer, :count).by(-1))
+    it 'delete my answer' do
+      expect { delete(:destroy, params: { question_id: question, id: my_answer }) }.to(change(question.answers, :count).by(-1))
     end
 
     it 'redirect to index view' do
-      delete(:destroy, params: { question_id: question, id: answer })
+      delete(:destroy, params: { question_id: question, id: my_answer })
       expect(response).to(redirect_to(question_path(question)))
+    end
+
+    it 'delete foreign answer' do
+      expect { delete(:destroy, params: { id: answer, question_id: question }) }.not_to(change(question.answers, :count))
     end
   end
 end
