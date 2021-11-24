@@ -1,27 +1,24 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!, except: %i[show]
+  before_action :authenticate_user!
   before_action :find_question
-
-  def show
-    @answer = @question.answers.find(params[:id])
-  end
 
   def new
     @answer = @question.answers.build
   end
 
   def create
-    @answer = @question.answers.build(answer_params)
+    @answer = @question.answers.build(answer_params.merge({ user: current_user }))
     if @answer.save
-      redirect_to(question_path(@question))
+      redirect_to(@question)
     else
       render(:new)
     end
   end
 
   def destroy
-    @question.answers.find(params[:id]).destroy!
-    redirect_to(question_path(@question))
+    answer = @question.answers.find(params[:id])
+    answer.destroy! if current_user.author_of?(answer)
+    redirect_to(@question)
   end
 
   private
