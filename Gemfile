@@ -17,7 +17,10 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'kaminari'
+gem 'popper_js', '~> 1.9', '>= 1.9.9'
+gem 'rails-ujs'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -26,8 +29,10 @@ gem 'haml-rails', '~> 2.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker', '~> 2.19'
+  gem 'geckodriver-helper'
   gem 'parallel_tests', '~> 2.7'
   gem 'pry', '~> 0.13.1'
   gem 'rails-controller-testing'
@@ -36,6 +41,7 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'spring-commands-parallel-tests', '~> 1.0', '>= 1.0.1'
 end
@@ -62,7 +68,6 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'fuubar', '~> 2.0'
   gem 'rack_session_access', '~> 0.2.0'
-  gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'launchy', '~> 2.4', '>= 2.4.3'
   gem 'webdrivers'

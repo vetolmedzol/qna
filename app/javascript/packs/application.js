@@ -10,7 +10,7 @@ import "channels"
 import 'bootstrap'
 
 require("bootstrap")
-import "../stylesheets/application";
+import "../../assets/stylesheets/application.scss";
 document.addEventListener("turbolinks:load", function() {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
@@ -21,3 +21,4 @@ document.addEventListener("turbolinks:load", function() {
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+require("@jquery")

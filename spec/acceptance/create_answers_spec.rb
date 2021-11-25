@@ -4,9 +4,9 @@ As an authenticated  User
 I  want to be able to create answers
 ' do
   given(:user) { create(:user) }
-  given(:question) { create(:question) }
+  given!(:question) { create(:question) }
 
-  scenario 'Authenticated user create answer' do
+  scenario 'Authenticated user create answer', js: true do
     sign_in(user)
     visit question_path(question)
 
@@ -20,7 +20,7 @@ I  want to be able to create answers
   end
 
   context 'multiple  sessions', :faye_normal do
-    scenario 'all users see new answer in real-time' do
+    scenario 'all users see new answer in real-time', js: true do
       Capybara.using_session('author') do
         sign_in(user)
         visit question_path(question)
@@ -38,9 +38,10 @@ I  want to be able to create answers
           expect(page).to(have_content('My answer'))
         end
         Capybara.using_session('guest') do
-          # remove next line after AJAX adding
           visit question_path(question)
-          expect(page).to(have_content('My answer'))
+          within '.answers' do
+            expect(page).to(have_content('My answer'))
+          end
         end
       end
     end

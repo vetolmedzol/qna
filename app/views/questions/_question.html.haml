@@ -3,11 +3,9 @@
     = link_to question.title, question_path(question)
 %h3
   = question.body
-
-- if question.answers.any?
-  - question.answers.each do |answer|
-    .answers
-      = render 'answers/answer', answer: answer, question: question
--else
-  %p Question have no any answers yet!
-  %p ***
+.answers
+  - if question.answers.any?
+    = render 'questions/answers', question: question
+  -else
+    %p Question have no any answers yet!
+    %p ***
