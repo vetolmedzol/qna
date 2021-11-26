@@ -1,3 +1,5 @@
+require_relative 'acceptance_helper'
+
 feature 'User sign in', '
   Inorder to be able to ask question
   As an User

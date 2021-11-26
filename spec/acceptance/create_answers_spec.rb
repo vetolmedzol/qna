@@ -1,3 +1,5 @@
+require_relative 'acceptance_helper'
+
 feature 'User answer', '
 In order to exchange my knowledge
 As an authenticated  User
@@ -17,6 +19,15 @@ I  want to be able to create answers
     within '.answers' do
       expect(page).to(have_content('My answer'))
     end
+  end
+
+  scenario 'User try to create invalid answer', js: true do
+    sign_in(user)
+    visit question_path(question)
+
+    click_on 'Create'
+
+    expect(page).to(have_content("Title can't be blank. You should add your answer here!"))
   end
 
   context 'multiple  sessions', :faye_normal do

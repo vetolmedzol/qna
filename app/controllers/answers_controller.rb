@@ -7,9 +7,7 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = @question.answers.create!(answer_params.merge({ user: current_user }))
-  rescue ActiveRecord::RecordInvalid
-    flash[:alert] = 'You should check requirements and try again!'
+    @answer = @question.answers.create(answer_params.merge({ user: current_user }))
   end
 
   def destroy

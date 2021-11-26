@@ -1,3 +1,5 @@
+require_relative 'acceptance_helper'
+
 feature 'Create qestions', '
     In order to get answer fromm community
     As an authenticated user

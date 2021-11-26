@@ -29,6 +29,8 @@ gem 'haml-rails', '~> 2.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capybara', '>= 3.26'
+  gem 'capybara-webkit', '~> 1.11', '>= 1.11.1'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker', '~> 2.19'
@@ -41,9 +43,9 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
-  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'spring-commands-parallel-tests', '~> 1.0', '>= 1.0.1'
+  gem 'webrick', '~> 1.3', '>= 1.3.1'
 end
 
 group :development do
@@ -64,8 +66,6 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
   gem 'fuubar', '~> 2.0'
   gem 'rack_session_access', '~> 0.2.0'
   # Easy installation and use of web drivers to run system tests with browsers

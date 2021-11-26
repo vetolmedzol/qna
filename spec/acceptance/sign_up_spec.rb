@@ -1,3 +1,5 @@
+require_relative 'acceptance_helper'
+
 feature 'User signs up', '
   In order to have ability asking question and answering
 As an user
