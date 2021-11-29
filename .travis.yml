@@ -10,6 +10,11 @@ notifications:
 addons:
   postgresql: "12"
 
+before_install:
+  # install qt-sdk and capybara webkit
+  - sudo apt-get install g++ qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+  - gem install capybara-webkit
+
 # Arguments for bundler
 bundler_args: --without development --deployment --jobs=3 --retry=3
 
@@ -30,7 +35,6 @@ before_script:
   - 'bundle exec rackup -s puma -E production private_pub.ru &'
   # wait, till PrivatePub initialized
   - sleep 3
-
 script:
   - bundle exec parallel_rspec spec/controllers/ spec/models/
 
