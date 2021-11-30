@@ -1,0 +1,5 @@
+<% if current_user.author_of?(@answer) %>
+var id = <%= @answer.id %>;
+$('[data-answer-id="'+ id +'"]').remove();
+$('.answers').html('<%= j render 'questions/answers', question: @question %>');
+<% end %>

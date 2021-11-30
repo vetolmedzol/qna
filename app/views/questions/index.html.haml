@@ -1,9 +1,12 @@
 .row.mx-auto
   = link_to 'Ask question', new_question_path
   - if @questions.present?
-    %h1 Question List
+    %h1 Questions List
     - @questions.each do |question|
-      = render 'question', question: question
+      %h2
+        .index-question-title
+          = link_to question.title, question_path(question)
+        %br
     = paginate @questions
   -else
     %h4 Question have no any answers yet!

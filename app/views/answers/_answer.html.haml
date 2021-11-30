@@ -1,3 +1,10 @@
 %h5
   = answer.title
-%p ***
+- if current_user.present? && current_user&.author_of?(answer)
+  = link_to 'Delete', question_answer_url(answer.question.id, answer.id), method: :delete, remote: true
+  %br
+  = link_to 'Edit', '', class: 'edit-answer-link', data: { answer_id: answer.id }
+  = form_for [question, answer], remote: true, html: {id: "edit-answer-#{answer.id}"} do |f|
+    = f.label :title, 'Answer'
+    = f.text_area :title
+    = f.submit 'Save'
