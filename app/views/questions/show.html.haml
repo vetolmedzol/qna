@@ -2,7 +2,7 @@
 
 = form_for [@question, @question.answers.build], remote: true do |f|
   = f.label :title, 'Your answer'
-  %br
+  .answer-errors
   = f.text_area :title
   %br
   = f.submit 'Create'

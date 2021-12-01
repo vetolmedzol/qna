@@ -298,3 +298,6 @@ Style/StringConcatenation:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Rails/SaveBang:
+  Enabled: false

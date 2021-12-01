@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :find_question, only: %i[show edit update destroy]
 
   def index
-    @questions = Question.all.page(params[:page]).per(5)
+    @questions = Question.all.ordered.page(params[:page]).per(5)
   end
 
   def show; end
@@ -25,7 +25,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    if @question.update(question_params)
+    if @question.update(question_params) && current_user.author_of?(@question)
       redirect_to(@question)
     else
       render(:edit)

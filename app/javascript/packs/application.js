@@ -21,4 +21,4 @@ document.addEventListener("turbolinks:load", function() {
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-require("@jquery")
+require("../packs/answers")

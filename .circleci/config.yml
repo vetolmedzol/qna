@@ -50,6 +50,12 @@ jobs:
             - qna-
       - configure_bundler
       - run:
+          name: Install qt-sdk and capybara webkit
+          command: |
+            sudo apt update
+            sudo apt install g++ qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+            gem install capybara-webkit
+      - run:
           name: Install bundle
           command: bundle install
       - run:
@@ -58,6 +64,9 @@ jobs:
       - run:
           name: Setup DB
           command: bundle exec rails db:create db:schema:load --trace
+      - run:
+          name: Rubocop check
+          command: bundle exec rubocop --parallel
       - run:
           name: RSpec
           command: bundle exec spring rspec --tag ~type:feature
