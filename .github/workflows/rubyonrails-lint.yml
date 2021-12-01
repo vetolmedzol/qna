@@ -24,8 +24,8 @@ jobs:
       # Add or Replace any other security checks here
       - name: Run security checks
         run: |
-          bundle
           sudo apt-get install g++ qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+          bundle
           gem install rubocop
           gem install rubocop-rails
           gem install rubocop-rspec
