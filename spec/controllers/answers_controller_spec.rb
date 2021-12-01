@@ -1,6 +1,6 @@
 RSpec.describe(AnswersController) do
   sign_in_user
-  let!(:question) { create(:question) }
+  let!(:question) { create(:question, user: @user) }
   let(:answer) { create(:answer, question: question) }
   let(:my_answer) { create(:answer, question: question, user: @user) }
 
@@ -101,6 +101,24 @@ RSpec.describe(AnswersController) do
     it 'render update template' do
       patch :update, params: { id: answer, question_id: question, answer: attributes_for(:answer) }, format: :js
       expect(response).to(render_template(:update))
+    end
+  end
+
+  describe '#PATCH make_best' do
+    let!(:answer) { create(:answer, question: question) }
+    let!(:best_answer) { create(:answer, question: question, best: true) }
+
+    before { patch :make_best, params: { id: answer, question_id: question, answer: { best: true }, format: :js } }
+
+    it 'change best answer' do
+      answer.reload
+      best_answer.reload
+      expect(answer.best).to(eq(true))
+      expect(best_answer.best).to(eq(false))
+    end
+
+    it 'render template make_best' do
+      expect(response).to(render_template(:make_best))
     end
   end
 end
