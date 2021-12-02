@@ -1,11 +1,26 @@
-%h2
-  .index-question-title
-    = link_to question.title, question_path(question)
-%h3
-  = question.body
-.answers
-  - if question.answers.any?
-    = render 'questions/answers', question: question
-  -else
-    %p Question have no any answers yet!
-    %p ***
+.question
+  %h2
+    .index-question-title
+      = link_to question.title, question_path(question)
+  %h3
+    = question.body
+  -if current_user.present? && current_user.author_of?(question)
+    .delete-question-link
+      = link_to 'Delete', question_path(question.id), method: :delete
+
+    = link_to 'Edit', '', class: 'edit-question-link'
+
+    .edit-question
+      = form_for question, remote: true, html: { id: "edit-question-#{question.id}" } do |f|
+        = f.label :title
+        = f.text_field :title
+        = f.label :body
+        = f.text_area :body
+        = f.submit 'Save', class: 'btn btn-warning'
+  %br
+  .answers
+    - if question.answers.any?
+      = render 'questions/answers', question: question
+    -else
+      %p Question have no any answers yet!
+      %p ***

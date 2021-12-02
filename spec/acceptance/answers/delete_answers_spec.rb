@@ -15,7 +15,9 @@ I  want to be able to delete answers
       sign_in(author)
       visit question_path(question)
       expect(page).to(have_content('My Answer'))
-      click_on 'Delete'
+      within '.answers' do
+        click_on 'Delete'
+      end
 
       expect(page).to(have_current_path(question_path(question), ignore_query: true))
       within '.answers' do
