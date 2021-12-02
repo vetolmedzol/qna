@@ -20,12 +20,14 @@ jobs:
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
         with:
-          bundler-cache: true
+          bundler-cache: false
       # Add or Replace any other security checks here
       - name: Run security checks
         run: |
+          sudo apt update
+          sudo apt install g++ qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+          gem install capybara-webkit
           bundle
-          sudo apt-get install g++ qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
           gem install rubocop
           gem install rubocop-rails
           gem install rubocop-rspec
@@ -33,8 +35,3 @@ jobs:
       - name: Run rubocop linter
         run: |
           rubocop --parallel
-
-      # - name: Run rspec tests
-      #  run: |
-      #     bundle exec rspec
-
