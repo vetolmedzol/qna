@@ -35,7 +35,3 @@ jobs:
       - name: Run rubocop linter
         run: |
           rubocop --parallel
-      # Run rspec tests
-      - name: Run rspec tests
-        run: bundle exec spring rspec --tag ~type:feature
-
