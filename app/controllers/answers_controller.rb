@@ -5,6 +5,7 @@ class AnswersController < ApplicationController
 
   def new
     @answer = @question.answers.build
+    @answer.attachments.build
   end
 
   def create
@@ -34,6 +35,6 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:title)
+    params.require(:answer).permit(:title, { attachments_attributes: [:file] })
   end
 end

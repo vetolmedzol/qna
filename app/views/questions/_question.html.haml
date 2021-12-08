@@ -4,6 +4,13 @@
       = link_to question.title, question_path(question)
   %h3
     = question.body
+  - if question.attachments.any?
+    Attachments:
+    %ul
+      - question.attachments.each do |a|
+        %li
+          = link_to a.file.file.filename, a.file.url
+
   -if current_user.present? && current_user.author_of?(question)
     .delete-question-link
       = link_to 'Delete', question_path(question.id), method: :delete
