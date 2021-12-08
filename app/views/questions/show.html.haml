@@ -5,5 +5,8 @@
   = f.label :title, 'Your answer'
   .answer-errors
   = f.text_area :title
+  = f.fields_for :attachments, Attachment.new, remote: true do |a|
+    = a.label :file
+    = a.file_field :file
   %br
   = f.submit 'Create'

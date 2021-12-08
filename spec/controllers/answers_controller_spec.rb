@@ -17,14 +17,14 @@ RSpec.describe(AnswersController) do
   end
 
   describe 'GET #new' do
-    before { get :new, params: { question_id: question } }
+    before { get :new, params: { question_id: question }, xhr: true }
 
     it 'assigns new answer to question' do
       expect(assigns(:answer)).to(be_a_new(Answer))
     end
 
-    it 'render new view' do
-      expect(response).to(render_template(:new))
+    it 'no redirects' do
+      expect(response).not_to(have_http_status(:redirect))
     end
   end
 

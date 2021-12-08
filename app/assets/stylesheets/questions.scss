@@ -7,12 +7,14 @@
 }
 
 .index-question-title {
+  text-decoration: underline;
+
   a {
     color: black;
-    text-decoration: none;
     cursor: cell;
   }
 }
+
 .header-button {
   color: black;
   text-decoration: none;

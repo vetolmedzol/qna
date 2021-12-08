@@ -1,6 +1,9 @@
 RSpec.describe(Question, type: :model) do
   it { is_expected.to(validate_presence_of(:title)) }
   it { is_expected.to(have_many(:answers)) }
+  it { is_expected.to(have_many(:attachments)) }
+
+  it { is_expected.to(accept_nested_attributes_for(:attachments)) }
 
   it 'validates presence of title' do
     expect(described_class.new(body: '123123')).not_to(be_valid)
