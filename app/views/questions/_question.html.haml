@@ -12,10 +12,11 @@
           = link_to a.file.file.filename, a.file.url
 
   -if current_user.present? && current_user.author_of?(question)
-    .delete-question-link
-      = link_to 'Delete', question_path(question.id), method: :delete
+    %p
+      .delete-question-link
+        = link_to 'Delete', question_path(question.id), method: :delete
 
-    = link_to 'Edit', '', class: 'edit-question-link'
+      = link_to 'Edit', '', class: 'edit-question-link'
 
     .edit-question
       = form_for question, remote: true, html: { id: "edit-question-#{question.id}" } do |f|
@@ -25,6 +26,7 @@
         = f.text_area :body
         = f.submit 'Save', class: 'btn btn-warning'
   %br
+  Answers:
   .answers
     - if question.answers.any?
       = render 'questions/answers', question: question
