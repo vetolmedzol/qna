@@ -22,10 +22,10 @@ gem 'kaminari'
 gem 'popper_js', '~> 1.9', '>= 1.9.9'
 gem 'rails-ujs'
 
-# Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'devise'
+gem 'draper'
 gem 'haml-rails', '~> 2.0'
 
 group :development, :test do

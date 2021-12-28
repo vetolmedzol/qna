@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
   private
 
   def find_question
-    @question = Question.find(params[:id])
+    @question = Question.find(params[:id]).decorate
   end
 
   def question_params

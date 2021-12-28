@@ -1,5 +1,6 @@
 RSpec.describe(QuestionsController) do
   let(:question) { create(:question, user: @user) }
+  let(:decorator_check) { expect(assigns(:question)).to(be_decorated_with(QuestionDecorator)) }
 
   describe 'GET #index' do
     let(:questions) { create_list(:question, 2) }
@@ -21,6 +22,7 @@ RSpec.describe(QuestionsController) do
     before { get :show, params: { id: question } }
 
     it 'assigns the requested question to @question' do
+      decorator_check
       expect(assigns(:question)).to(eq(question))
     end
 
@@ -53,6 +55,7 @@ RSpec.describe(QuestionsController) do
     before { get :edit, params: { id: question } }
 
     it 'assigns the requested question to @question' do
+      decorator_check
       expect(assigns(:question)).to(eq(question))
     end
 
@@ -93,11 +96,13 @@ RSpec.describe(QuestionsController) do
     context 'valid attributes' do
       it 'assigns the requested question to @question' do
         patch :update, params: { id: question, question: attributes_for(:question), format: :js }
+        decorator_check
         expect(assigns(:question)).to(eq(question))
       end
 
       it 'changes question attributes' do
         patch :update, params: { id: question, question: { title: 'new title', body: 'new body' }, format: :js }
+        decorator_check
         question.reload
         expect(question.title).to(eq('new title'))
         expect(question.body).to(eq('new body'))
@@ -105,6 +110,7 @@ RSpec.describe(QuestionsController) do
 
       it 'redirect to updated  question' do
         patch :update, params: { id: question, question: { title: 'new title', body: 'new body' }, format: :js }
+        decorator_check
         expect(response).to(redirect_to(question))
       end
     end

@@ -1,15 +1,15 @@
 .row.mx-auto
   = link_to 'Ask question', new_question_path
-  - if @questions.present?
+  - if @questions.exists?
     %h1 Questions List
     - @questions.each do |question|
       .question
         %h2.index-question-title
           = link_to question.title, question_path(question)
-        -if current_user.present? && current_user.author_of?(question)
+        -if current_user && current_user.author_of?(question)
           .delete-question-link
             = link_to 'Delete', question_path(question.id), method: :delete
         %br
     = paginate @questions
   -else
-    %h4 Question have no any answers yet!
+    %h4 No questions yet! You should be first!
