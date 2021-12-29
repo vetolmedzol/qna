@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :find_question, only: %i[show edit update destroy]
 
   def index
-    @questions = Question.all.ordered.page(params[:page]).per(10)
+    @questions = QuestionsDecorator.new(Question.all.ordered.page(params[:page]).per(10))
   end
 
   def show
