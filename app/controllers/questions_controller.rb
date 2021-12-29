@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :find_question, only: %i[show edit update destroy]
+  before_action :question, only: %i[show edit update destroy]
 
   def index
     @questions = QuestionsDecorator.new(Question.all.ordered.page(params[:page]).per(10))
@@ -39,8 +39,8 @@ class QuestionsController < ApplicationController
 
   private
 
-  def find_question
-    @question = Question.find(params[:id]).decorate
+  def question
+    @question ||= Question.find(params[:id]).decorate
   end
 
   def question_params

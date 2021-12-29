@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
 
   def full_name
-    [first_name, last_name].filter(&:presence).compact.map(&:strip) * ' '
+    [first_name, last_name].join(' ').chop
   end
 
   def author_of?(resource)
