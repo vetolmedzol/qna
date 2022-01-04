@@ -56,8 +56,6 @@ RSpec.describe(QuestionsController) do
 
     before { get :edit, params: { id: question } }
 
-    include_examples 'decorator'
-
     it 'assigns the requested question to @question' do
       expect(assigns(:question)).to(eq(question))
     end

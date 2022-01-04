@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :question, only: %i[show edit update destroy]
+  load_resource
 
   def index
     @questions = QuestionsDecorator.new(Question.all.ordered.page(params[:page]).per(10))
@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
   def show
     @answer = @question.answers.build
     @answer.attachments.build
+    @question = @question.decorate
   end
 
   def new
@@ -38,10 +39,6 @@ class QuestionsController < ApplicationController
   end
 
   private
-
-  def question
-    @question ||= Question.find(params[:id]).decorate
-  end
 
   def question_params
     params.require(:question).permit(:title, :body, { attachments_attributes: [:file] })
