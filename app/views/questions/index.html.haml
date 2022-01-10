@@ -1,7 +1,7 @@
 .row.mx-auto
   = link_to 'Ask question', new_question_path
   - if @questions.any?
-    %h1 Questions List
+    %h1 Questions List:
     - @questions.each do |question|
       .question
         %h2.index-question-title

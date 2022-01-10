@@ -22,6 +22,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'kaminari'
 gem 'popper_js', '~> 1.9', '>= 1.9.9'
 gem 'rails-ujs'
+gem 'scenic', '~> 1.4'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'

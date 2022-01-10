@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   load_resource
 
   def index
-    @questions = QuestionsDecorator.new(Question.all.ordered.page(params[:page]).per(10))
+    @questions = QuestionsDecorator.new(Question.includes(:user).all.ordered.page(params[:page]).per(10))
   end
 
   def show
