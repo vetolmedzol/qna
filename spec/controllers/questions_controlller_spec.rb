@@ -1,3 +1,5 @@
+require_relative 'shared_examples/decorator'
+
 RSpec.describe(QuestionsController) do
   let(:question) { create(:question, user: @user) }
 
@@ -19,6 +21,8 @@ RSpec.describe(QuestionsController) do
     let!(:question) { create(:question, user: create(:user)) }
 
     before { get :show, params: { id: question } }
+
+    include_examples 'decorator'
 
     it 'assigns the requested question to @question' do
       expect(assigns(:question)).to(eq(question))

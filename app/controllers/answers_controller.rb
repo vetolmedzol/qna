@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_question
+  before_action :question
   before_action :find_answer, except: %i[new create]
 
   def new
@@ -30,8 +30,8 @@ class AnswersController < ApplicationController
     @answer = @question.answers.find(params[:id])
   end
 
-  def find_question
-    @question = Question.find(params[:question_id])
+  def question
+    @question ||= Question.find(params[:question_id])
   end
 
   def answer_params
