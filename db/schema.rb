@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_28_152213) do
+ActiveRecord::Schema.define(version: 2022_01_12_121700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_152213) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.boolean "best", default: false
+    t.integer "rating", default: 0
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
@@ -58,4 +59,17 @@ ActiveRecord::Schema.define(version: 2021_12_28_152213) do
   end
 
   add_foreign_key "answers", "questions"
+
+  create_view "rating_answers", materialized: true, sql_definition: <<-SQL
+      SELECT answers.id,
+      answers.title,
+      answers.question_id,
+      answers.rating,
+      answers.user_id,
+      answers.best
+     FROM (answers
+       LEFT JOIN attachments ON ((answers.id = attachments.attachable_id)))
+    WHERE ((answers.best IS FALSE) AND ((attachments.attachable_type)::text ~~ 'Answer'::text))
+    ORDER BY answers.rating DESC;
+  SQL
 end

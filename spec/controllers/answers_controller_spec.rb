@@ -2,6 +2,7 @@ RSpec.describe(AnswersController) do
   sign_in_user
   let!(:question) { create(:question, user: @user) }
   let(:answer) { create(:answer, question: question) }
+  let(:rating_answer) { create(:rating_answer, question: question) }
   let(:my_answer) { create(:answer, question: question, user: @user) }
 
   describe 'GET #show' do
@@ -83,23 +84,23 @@ RSpec.describe(AnswersController) do
     let(:answer) { create(:answer, question: question, user: @user) }
 
     it 'assigns the requested answer to @answer' do
-      patch :update, params: { id: answer, question_id: question, answer: attributes_for(:answer) }, format: :js
+      patch :update, params: { id: answer, question_id: question, rating_answer: attributes_for(:rating_answer) }, format: :js
       expect(assigns(:answer)).to(eq(answer))
     end
 
     it 'assigns the requested question to @question' do
-      patch :update, params: { id: answer, question_id: question, answer: attributes_for(:answer) }, format: :js
+      patch :update, params: { id: answer, question_id: question, rating_answer: attributes_for(:rating_answer) }, format: :js
       expect(assigns(:question)).to(eq(question))
     end
 
     it 'changes answer attributes' do
-      patch :update, params: { id: answer, question_id: question, answer: { title: 'new title' } }, format: :js
+      patch :update, params: { id: answer, question_id: question, rating_answer: { title: 'new title' } }, format: :js
       answer.reload
       expect(answer.title).to(eq('new title'))
     end
 
     it 'render update template' do
-      patch :update, params: { id: answer, question_id: question, answer: attributes_for(:answer) }, format: :js
+      patch :update, params: { id: answer, question_id: question, rating_answer: attributes_for(:rating_answer) }, format: :js
       expect(response).to(render_template(:update))
     end
   end

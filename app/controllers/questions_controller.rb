@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
     @answer = @question.answers.build
     @answer.attachments.build
     @question = @question.decorate
+    @answers = RatingAnswer.includes(:user).where(question_id: @question.id)
   end
 
   def new
