@@ -1,7 +1,7 @@
 %h5
   = answer.title
-  - if answer.attachments.any?
-    Attachments:
+  - if answer.attachments&.any?
+    %p Attachments:
     %ul
       - answer.attachments.each do |a|
         %li

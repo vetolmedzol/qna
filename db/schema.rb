@@ -66,10 +66,11 @@ ActiveRecord::Schema.define(version: 2022_01_12_121700) do
       answers.question_id,
       answers.rating,
       answers.user_id,
-      answers.best
+      answers.best,
+      ARRAY( SELECT attachments.id) AS attachments_ids
      FROM (answers
        LEFT JOIN attachments ON ((answers.id = attachments.attachable_id)))
-    WHERE ((answers.best IS FALSE) AND ((attachments.attachable_type)::text ~~ 'Answer'::text))
+    WHERE (answers.best IS FALSE)
     ORDER BY answers.rating DESC;
   SQL
 end

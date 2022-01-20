@@ -15,7 +15,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    @answer.update!(rating_answer_params) if current_user.author_of?(@answer)
+    @answer.update!(answer_params) if current_user.author_of?(@answer)
   end
 
   def destroy
@@ -23,7 +23,7 @@ class AnswersController < ApplicationController
   end
 
   def make_best
-    @answer.make_best! if current_user.author_of?(@question)
+    MakeBest.new(@answer).call if current_user.author_of?(@question)
   end
 
   private
@@ -45,10 +45,10 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:title, { attachments_attributes: [:file] })
-  end
-
-  def rating_answer_params
-    params.require(:rating_answer).permit(:title, { attachments_attributes: [:file] })
+    if params[:rating_answer]
+      params.require(:rating_answer).permit(:title, { attachments_attributes: [:file] })
+    else
+      params.require(:answer).permit(:title, { attachments_attributes: [:file] })
+    end
   end
 end

@@ -8,16 +8,4 @@ class Answer < ApplicationRecord
   accepts_nested_attributes_for :attachments
 
   scope :best_answers, -> { where(best: true) }
-  scope :not_best_answers, -> { where(best: false) }
-
-  def make_best!
-    ActiveRecord::Base.transaction do
-      unless best?
-        question.answers.each do |answer|
-          answer.update(best: false)
-        end
-      end
-      update!(best: true)
-    end
-  end
 end
