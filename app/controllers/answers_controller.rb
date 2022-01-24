@@ -12,14 +12,17 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.create(answer_params.merge({ user: current_user }))
+    refresh_answers
   end
 
   def update
     @answer.update!(answer_params) if current_user.author_of?(@answer)
+    refresh_answers
   end
 
   def destroy
     @answer.destroy! if current_user.author_of?(@answer)
+    refresh_answers
   end
 
   def make_best
