@@ -11,6 +11,8 @@ class MakeBest
         end
       end
       @answer.update!(best: true)
+    rescue ActiveRecord::RecordInvalid => e
+      e.record.errors
     end
   end
 end

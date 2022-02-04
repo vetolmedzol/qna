@@ -10,7 +10,7 @@ class RatingAnswer < ApplicationRecord
 
   def attachments
     attachments_ids = RatingAnswer.find(id).attachments_ids
-    Attachment.where(id: attachments_ids) if attachments_ids.any?
+    Attachment.where(id: attachments_ids)
   end
 
   def readonly?

@@ -2,8 +2,7 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :question
   before_action :answers
-  before_action :find_answer, except: %i[new create]
-  after_action :refresh_answers
+  before_action :answer, except: %i[new create]
 
   def new
     @answer = @question.answers.build
@@ -12,17 +11,14 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.create(answer_params.merge({ user: current_user }))
-    refresh_answers
   end
 
   def update
     @answer.update!(answer_params) if current_user.author_of?(@answer)
-    refresh_answers
   end
 
   def destroy
     @answer.destroy! if current_user.author_of?(@answer)
-    refresh_answers
   end
 
   def make_best
@@ -31,12 +27,8 @@ class AnswersController < ApplicationController
 
   private
 
-  def refresh_answers
-    RatingAnswer.refresh
-  end
-
-  def find_answer
-    @answer = @question.answers.find(params[:id])
+  def answer
+    @answer ||= @question.answers.find(params[:id])
   end
 
   def question
@@ -44,14 +36,10 @@ class AnswersController < ApplicationController
   end
 
   def answers
-    @answers = RatingAnswer.includes(:user).where(question_id: @question.id)
+    @answers ||= RatingAnswer.includes(:user).where(question_id: @question.id)
   end
 
   def answer_params
-    if params[:rating_answer]
-      params.require(:rating_answer).permit(:title, { attachments_attributes: [:file] })
-    else
-      params.require(:answer).permit(:title, { attachments_attributes: [:file] })
-    end
+    params.require(:answer).permit(:title, { attachments_attributes: [:file] })
   end
 end

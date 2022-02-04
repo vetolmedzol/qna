@@ -12,7 +12,7 @@
     %br
   -if current_user.author_of?(answer)
     = link_to 'Edit', '', class: 'edit-answer-link', data: { answer_id: answer.id }
-    = form_for [question, answer], url: question_answer_path(question.id, answer.id), method: :patch, remote: true, html: { id: "edit-answer-#{answer.id}" } do |f|
+    = form_for answer, as: :answer, url: question_answer_path(question.id, answer.id), method: :patch, remote: true, html: { id: "edit-answer-#{answer.id}" } do |f|
       = f.label :title, 'Answer'
       = f.text_area :title
       = f.submit 'Save'
