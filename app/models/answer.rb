@@ -1,8 +1,6 @@
 class Answer < ApplicationRecord
   validates :title, presence: true
-  after_create :refresh_rating_answers
-  after_update :refresh_rating_answers
-  after_destroy :refresh_rating_answers
+  after_commit :refresh_rating_answers
 
   belongs_to :question
   belongs_to :user

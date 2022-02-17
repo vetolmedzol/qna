@@ -6,7 +6,7 @@ class MakeBest
   def call
     ActiveRecord::Base.transaction do
       unless @answer.best?
-        @answer.question.answers.each do |answer|
+        @answer.question.answers.best_answers.each do |answer|
           answer.update!(best: false)
         end
       end
