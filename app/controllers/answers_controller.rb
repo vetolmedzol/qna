@@ -1,8 +1,10 @@
 class AnswersController < ApplicationController
+  rescue_from Pundit::NotAuthorizedError, with: :error_render_method
   before_action :authenticate_user!
   before_action :question
   before_action :answers
   before_action :answer, except: %i[new create]
+  before_action :authorize_answer, only: %i[update destroy make_best]
 
   def new
     @answer = @question.answers.build
@@ -14,18 +16,22 @@ class AnswersController < ApplicationController
   end
 
   def update
-    @answer.update!(answer_params) if current_user.author_of?(@answer)
+    @answer.update!(answer_params)
   end
 
   def destroy
-    @answer.destroy! if current_user.author_of?(@answer)
+    @answer.destroy!
   end
 
   def make_best
-    MakeBest.new(@answer).call if current_user.author_of?(@question)
+    MakeBest.new(@answer).call
   end
 
   private
+
+  def authorize_answer
+    authorize @answer
+  end
 
   def answer
     @answer ||= @question.answers.find(params[:id])

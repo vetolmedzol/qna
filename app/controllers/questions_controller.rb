@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
+  rescue_from Pundit::NotAuthorizedError, with: :error_render_method
   before_action :authenticate_user!, except: %i[index show]
-  load_resource
+  before_action :question, only: %i[show edit update destroy]
+  before_action :authorize_question, only: %i[update destroy]
 
   def index
     @questions = QuestionsDecorator.new(Question.includes(:user).all.ordered.page(params[:page]).per(10))
@@ -21,7 +23,7 @@ class QuestionsController < ApplicationController
   def edit; end
 
   def create
-    @question = current_user.questions.new(question_params)
+    @question = Question.new(question_params.merge({ user: current_user }))
     if @question.save
       flash[:notice] = 'Your question successfully created!'
       redirect_to(@question)
@@ -31,15 +33,23 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question.update(question_params) && current_user.author_of?(@question)
+    @question.update(question_params)
   end
 
   def destroy
-    @question.destroy! if current_user.author_of?(@question)
+    @question.destroy!
     redirect_to(questions_path)
   end
 
   private
+
+  def authorize_question
+    authorize(@question)
+  end
+
+  def question
+    @question = Question.find(params[:id])
+  end
 
   def question_params
     params.require(:question).permit(:title, :body, { attachments_attributes: [:file] })
