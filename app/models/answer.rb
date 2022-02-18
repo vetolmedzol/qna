@@ -1,5 +1,6 @@
 class Answer < ApplicationRecord
   validates :title, presence: true
+  after_commit :refresh_rating_answers
 
   belongs_to :question
   belongs_to :user
@@ -8,16 +9,10 @@ class Answer < ApplicationRecord
   accepts_nested_attributes_for :attachments
 
   scope :best_answers, -> { where(best: true) }
-  scope :not_best_answers, -> { where(best: false) }
 
-  def make_best!
-    ActiveRecord::Base.transaction do
-      unless best?
-        question.answers.each do |answer|
-          answer.update(best: false)
-        end
-      end
-      update!(best: true)
-    end
+  private
+
+  def refresh_rating_answers
+    RatingAnswer.refresh
   end
 end

@@ -5,10 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :answers, dependent: :destroy
+  has_many :rating_answers, dependent: :destroy
   has_many :questions, dependent: :destroy
 
   def full_name
-    [first_name, last_name].join(' ').chop
+    [first_name, last_name].join(' ')
   end
 
   def author_of?(resource)

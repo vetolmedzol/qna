@@ -263,9 +263,6 @@ Style/IpAddresses:
 Style/KeywordParametersOrder:
   Enabled: true
 
-Style/MethodCallWithArgsParentheses:
-  Enabled: true
-
 Style/MissingElse:
   Enabled: true
 
@@ -297,6 +294,9 @@ Style/StringConcatenation:
   Enabled: true
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/MethodCallWithArgsParentheses:
   Enabled: false
 
 Rails/SaveBang:

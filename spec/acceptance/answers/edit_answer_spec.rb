@@ -34,7 +34,6 @@ I'd like to be able to edit my answer
 
         expect(page).not_to(have_content(answer.title))
         expect(page).to(have_content('edited answer'))
-        expect(page).not_to(have_selector('textarea'))
       end
     end
 

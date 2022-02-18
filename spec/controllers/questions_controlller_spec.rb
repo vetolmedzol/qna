@@ -1,4 +1,4 @@
-require_relative 'shared_examples/decorator'
+require_relative '../support/decorator'
 
 RSpec.describe(QuestionsController) do
   let(:question) { create(:question, user: @user) }
